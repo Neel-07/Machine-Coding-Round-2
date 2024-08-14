@@ -21,3 +21,31 @@
   font-family: "DM Serif Text";
 }
 
+
+.active {
+  font-weight: bold;
+  color: blue;
+}
+
+
+.nav-link {
+  text-decoration: none;
+  color: blue; /* Default color */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: red; /* Color for the active link */
+}
+
+
+.section {
+  display: flex;
+  flex-direction: row; /* Layout items horizontally */
+  flex-wrap: nowrap; /* Ensure no wrapping */
+  padding-top: 1rem; /* Adjust padding */
+  padding-bottom: 4rem; /* Adjust padding */
+  padding-left: 2.5rem; /* Adjust padding */
+  width: 100%;
+  min-height: 832px; /* Ensure adequate height */
+}

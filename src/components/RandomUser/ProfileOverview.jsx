@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 import ProfileImage from "./ProfileImage";
 import ProfileInfo from "./ProfileInfo";
@@ -21,6 +22,26 @@ function ProfileOverview() {
             <Footer />
         </article>
       </section>
+      <nav>
+        <ul>
+          <li>
+            <NavLink 
+              to="/random-jokes" 
+              className={({ isActive }) => (isActive ? "active nav-link" : "nav-link")}
+            >
+              Random Jokes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/cats-listing" 
+              className={({ isActive }) => (isActive ? "active nav-link" : "nav-link")}
+            >
+              Cats Listing
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     </main>
   );
 }
