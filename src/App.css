@@ -1,0 +1,23 @@
+.container{
+  height:100vh;
+  width: 100%;
+  background-color: black;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box{
+  height:70%;
+  width:30%;
+  background-color:#B6B3F3 ;
+  border-radius: 20px;
+  border:7px solid white;
+}
+
+.title{
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "DM Serif Text";
+}
+
