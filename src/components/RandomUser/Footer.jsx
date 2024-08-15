@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="flex gap-5 justify-between self-end mt-20 max-w-full text-xs font-bold text-white text-opacity-40 w-[197px] mr-5 max-md:mt-10 max-md:mr-5">
+    <footer className="flex gap-5 justify-between self-end mt-20 max-w-full text-xs font-bold text-white text-opacity-40 w-[237px] mr-5 max-md:mt-10 max-md:mr-5">
       <p className="self-end mt-12 max-md:mt-10">© chai aur code</p>
       <a href="https://www.chaicode.com" target="_blank" rel="noopener noreferrer">
       <img

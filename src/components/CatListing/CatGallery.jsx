@@ -34,17 +34,35 @@ const catData = [
 const CatGallery = () => {
   return (
     <main className="flex overflow-hidden bg-white bg-opacity-60">
-      <section className="section flex relative flex-col pt-4 pb-16 pl-10 w-full min-h-[832px] max-md:pl-5 max-md:max-w-full">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7615083a4cbb2129312ead281e128af65d1871ef4da45342efca79167839f04a?placeholderIfAbsent=true&apiKey=ca25893004784157b7d465cb615c082f" alt="" className="object-cover absolute inset-0 size-full" />
-        <header className="flex relative flex-wrap gap-5 justify-between items-start w-full text-5xl font-bold tracking-tighter text-center text-white max-w-[1214px] max-md:max-w-full max-md:text-4xl">
+      <section className="flex flex-col relative pt-4 pb-16 pl-10 w-full min-h-[832px] max-md:pl-5 max-md:max-w-full">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7615083a4cbb2129312ead281e128af65d1871ef4da45342efca79167839f04a?placeholderIfAbsent=true&apiKey=ca25893004784157b7d465cb615c082f"
+          alt=""
+          className="object-cover absolute inset-0 size-full z-10" // Ensure background is behind the cards
+        />
+        <header className="flex relative justify-between items-center w-full text-5xl font-bold tracking-tighter text-center text-white max-w-[1214px] max-md:max-w-full max-md:text-4xl z-20">
           <h1 className="mt-5 max-md:text-4xl">Cats around us</h1>
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a685dbcfe687c1da00eb66734ac4a95d69a762ef671ac629e6e37e0e41b9c98?placeholderIfAbsent=true&apiKey=ca25893004784157b7d465cb615c082f" alt="Cat icon" className="object-contain shrink-0 rounded-xl aspect-[0.97] w-[60px]" />
+          <a
+            href="https://www.chaicode.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-4 right-4 z-30"
+          >
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a685dbcfe687c1da00eb66734ac4a95d69a762ef671ac629e6e37e0e41b9c98?placeholderIfAbsent=true&apiKey=ca25893004784157b7d465cb615c082f"
+              alt="Cat icon"
+              className="object-contain rounded-xl aspect-[0.97] w-[60px]"
+            />
+          </a>
         </header>
-        <div className="flex relative flex-wrap gap-5 mt-6">
+        <div className="flex flex-wrap gap-5 mt-6 justify-center relative z-20">
           {catData.map((cat, index) => (
-            <CatCard key={index} {...cat} />
+            <div key={index} className="w-[300px] h-[400px] flex-shrink-0 flex flex-col justify-between">
+              <CatCard {...cat} />
+            </div>
           ))}
-          <div className="flex shrink-0 mt-1.5 bg-white rounded-2xl h-[643px] shadow-[2px_2px_8px_rgba(0,0,0,0.25)] w-[61px] max-md:hidden" />
         </div>
       </section>
     </main>
