@@ -1,17 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 import ProfileImage from "./ProfileImage";
 import ProfileInfo from "./ProfileInfo";
 import Footer from "./Footer";
-import { FiMenu, FiX } from "react-icons/fi"; // Importing icons from React Icons
+import { FiMenu, FiX } from "react-icons/fi";
 
 function ProfileOverview() {
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const togglePanel = () => {
     setIsOpen(!isOpen);
   };
+
+  const fetchRandomUser = async () => {
+    try {
+      const response = await fetch("https://api.freeapi.app/api/v1/public/randomusers/user/random");
+      const data = await response.json();
+      setUserData(data.data);
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRandomUser();
+  }, []);
+
+   // Function to fetch new profile data
+   const handleRefresh = async () => {
+    try {
+      const response = await fetch('https://api.freeapi.app/api/v1/public/randomusers/user/random');
+      const data = await response.json();
+      setUserData(data.data); // Use setUserData instead of setProfileData
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
+  
+
+  useEffect(() => {
+    handleRefresh(); // Fetch profile data on component mount
+  }, []);
 
   return (
     <main className="relative flex overflow-hidden flex-col text-center bg-black bg-opacity-50 text-black text-opacity-70">
@@ -23,9 +54,18 @@ function ProfileOverview() {
           className="object-cover absolute inset-0 size-full"
         />
         <article className="flex relative flex-col items-center py-8 mb-0 max-w-full bg-violet-300 rounded-xl border-8 border-white border-solid w-[420px] max-md:mb-2.5">
-          <ProfileHeader />
-          <ProfileImage />
-          <ProfileInfo />
+          <ProfileHeader onRefresh={handleRefresh} />
+          {userData && (
+            <>
+              <ProfileImage
+                imageUrl={userData.picture.large}
+                title={userData.name.title}
+                name={`${userData.name.first} ${userData.name.last}`}
+                username={userData.login.username}
+              />
+              <ProfileInfo userData={userData} />
+            </>
+          )}
           <Footer />
         </article>
       </section>
@@ -65,7 +105,7 @@ function ProfileOverview() {
                 className={({ isActive }) =>
                   isActive ? "text-black font-bold  nav-link" : "text-black nav-link"
                 }
-                onClick={togglePanel} // Close panel on link click
+                onClick={togglePanel}
               >
                 Random Jokes
               </NavLink>
@@ -76,7 +116,7 @@ function ProfileOverview() {
                 className={({ isActive }) =>
                   isActive ? "text-black font-bold nav-link" : "text-black nav-link"
                 }
-                onClick={togglePanel} // Close panel on link click
+                onClick={togglePanel}
               >
                 Cats Listing
               </NavLink>

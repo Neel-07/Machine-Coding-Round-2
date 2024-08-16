@@ -59,7 +59,7 @@ function TwitterPost() {
               <NavLink
                 to="/random-user"
                 className={({ isActive }) =>
-                  isActive ? "text-black font-bold p-2 text-lg" : "text-black p-2 text-lg"
+                  isActive ? "text-black font-bold p-2 " : "text-black p-2"
                 }
                 onClick={togglePanel}
               >
@@ -70,7 +70,7 @@ function TwitterPost() {
               <NavLink
                 to="/cats-listing"
                 className={({ isActive }) =>
-                  isActive ? " text-black  font-bold p-2 text-lg" : " text-black p-2 text-lg"
+                  isActive ? " text-black  font-bold p-2 " : " text-black p-2 "
                 }
                 onClick={togglePanel}
               >
