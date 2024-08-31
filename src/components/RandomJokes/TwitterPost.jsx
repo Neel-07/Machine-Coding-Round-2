@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PostHeader from "./PostHeader";
 import PostContent from "./PostContent";
 import PostStats from "./PostStats";
@@ -8,10 +8,29 @@ import { NavLink } from "react-router-dom";
 
 function TwitterPost() {
   const [isOpen, setIsOpen] = useState(false);
+  const [joke, setJoke] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const togglePanel = () => {
     setIsOpen(!isOpen);
   };
+
+  const fetchJoke = async () => {
+    setLoading(true); // Start loading
+    try {
+      const response = await fetch("https://api.freeapi.app/api/v1/public/randomjokes/joke/random");
+      const data = await response.json();
+      setJoke(data.data.content || "Failed to load joke.");
+    } catch (error) {
+      setJoke("Failed to load joke.");
+    } finally {
+      setLoading(false); // End loading
+    }
+  };
+
+  useEffect(() => {
+    fetchJoke(); // Fetch a joke on component mount
+  }, []);
 
   return (
     <article className="flex overflow-hidden flex-col bg-white relative">
@@ -24,7 +43,7 @@ function TwitterPost() {
         />
         <div className="flex relative flex-col self-center px-6 py-6 max-w-full bg-black rounded-xl shadow-[2px_2px_4px_rgba(0,0,0,0.25)] w-[524px] max-md:px-5 z-20">
           <PostHeader />
-          <PostContent />
+          <PostContent joke={joke} loading={loading} />
           <PostStats />
           <PostFooter />
         </div>

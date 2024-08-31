@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-function PostContent() {
-  const [joke, setJoke] = useState("");
+function PostContent({ joke, loading }) {
   const [timestamp, setTimestamp] = useState("");
   const [views, setViews] = useState(0);
 
   useEffect(() => {
-    // Fetch joke from API
-    const fetchJoke = async () => {
-      try {
-        const response = await fetch("https://api.freeapi.app/api/v1/public/randomjokes/joke/random");
-        const data = await response.json();
-        setJoke(data.data.content || "Failed to load joke.");
-      } catch (error) {
-        setJoke("Failed to load joke.");
-      }
-    };
-
-    fetchJoke();
-
     // Generate random date and time
     const startYear = 2015; // specify the earliest year you want
     const endYear = new Date().getFullYear(); // current year
@@ -27,7 +13,6 @@ function PostContent() {
     const randomDate = new Date(
       new Date(randomYear, 0, 1).getTime() + Math.random() * (new Date().getTime() - new Date(randomYear, 0, 1).getTime())
     );
-
 
     const formattedDate = randomDate.toLocaleString("en-US", {
       hour: "2-digit",
@@ -48,7 +33,7 @@ function PostContent() {
   return (
     <>
       <p className="mt-2.5 text-sm tracking-tight text-white max-md:mr-1 max-md:max-w-full">
-        {joke}
+        {loading ? "Loading new joke..." : joke}
       </p>
       <div className="self-start mt-6 text-xs tracking-normal text-neutral-400">
         {timestamp} · <span className="font-semibold text-white">{views}M</span> Views
