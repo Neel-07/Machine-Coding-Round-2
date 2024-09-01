@@ -11,7 +11,7 @@ function ProfileImage({ imageUrl, title, name, username }) {
           className="rounded-full object-cover w-full aspect-[1.04] shadow-[1px_1px_4px_rgba(0,0,0,0.25)]"
         />
         {title && (
-          <div className="absolute -top-2 -right-5 bg-black text-white text-xs font-semibold px-2 py-1 rounded-full">
+          <div className="absolute -top-2 -right-7 bg-black text-white text-xs font-semibold px-2 py-1 rounded-full">
             {title}
           </div>
         )}

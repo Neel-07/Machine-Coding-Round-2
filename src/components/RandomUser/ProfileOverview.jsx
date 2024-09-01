@@ -45,7 +45,7 @@ function ProfileOverview() {
   }, []);
 
   return (
-    <main className="relative flex overflow-hidden flex-col text-center bg-black bg-opacity-50 text-black text-opacity-70">
+    <main className="relative flex overflow-hidden flex-col text-center bg-black bg-opacity-50 text-black text-opacity-70 min-h-screen">
       <section className="flex relative flex-col justify-center items-center px-20 py-24 min-h-[832px] max-md:px-5 max-md:py-24 max-md:max-w-full">
         <img
           loading="lazy"

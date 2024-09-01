@@ -33,8 +33,8 @@ function TwitterPost() {
   }, []);
 
   return (
-    <article className="flex overflow-hidden flex-col bg-white relative">
-      <div className="flex relative flex-col pt-64 pr-8 pb-8 pl-20 w-full min-h-[832px] max-md:px-5 max-md:pt-24 max-md:max-w-full">
+    <article className="flex overflow-hidden flex-col bg-white relative min-h-screen">
+      <div className="flex relative flex-col pt-64 pr-8 pb-8 pl-20 w-full min-h-screen max-md:px-5 max-md:pt-24 max-md:max-w-full">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7699e6b79a7e5ec15264e7f4664abc789a03b7062c737cd1591fa0cee4588be?placeholderIfAbsent=true&apiKey=ca25893004784157b7d465cb615c082f"

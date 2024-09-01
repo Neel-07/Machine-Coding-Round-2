@@ -3,8 +3,14 @@ import React from 'react';
 function ProfileInfo({ userData }) {
   const { location, dob, cell, nat, registered } = userData;
 
-  // Format the date of birth
-  const formattedDOB = new Date(dob.date).toLocaleDateString();
+  // Format the date of birth and registered date in "DD MMMM, YYYY" format
+  const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+  };
+
+  const formattedDOB = formatDate(dob.date);
+  const formattedRegistered = formatDate(registered.date);
 
   // Nationality flag URL (using a placeholder URL; update based on your actual flag image source)
   const flagUrl = `https://flagcdn.com/w80/${nat.toLowerCase()}.png`; // Replace with actual flag image URL
@@ -47,7 +53,7 @@ function ProfileInfo({ userData }) {
     },
     { 
       label: 'Registered Since', 
-      value: new Date(registered.date).toLocaleDateString() 
+      value: formattedRegistered
     }
   ];
 
@@ -75,12 +81,12 @@ function ProfileInfo({ userData }) {
         </div>
       </div>
       <hr className="shrink-0 mt-3 w-full h-px border border-solid border-black border-opacity-10 max-md:mr-1" />
-      <div className="flex gap-10 mt-4 mr-12 overflow-hidden">
+      <div className="flex gap-12 font-serifText font-bold mt-4  overflow-hidden font-xl">
         <div className="flex flex-col flex-1 items-start">
           {profileData.slice(0, 3).map((item, index) => (
             <React.Fragment key={index}>
-              <p>{item.label}</p>
-              <p className="text-lg cursor-pointer" onClick={item.action}>{item.value}</p>
+              <p className='font-medium'>{item.label}</p>
+              <p className="-mr-2 text-lg cursor-pointer" onClick={item.action}>{item.value}</p>
               {index < 2 && <div className="mt-4" />}
             </React.Fragment>
           ))}
@@ -88,8 +94,8 @@ function ProfileInfo({ userData }) {
         <div className="flex flex-col flex-1 ml-4 items-start">
           {profileData.slice(3).map((item, index) => (
             <React.Fragment key={index + 3}>
-              <p>{item.label}</p>
-              <p className="text-lg cursor-pointer" onClick={item.action}>{item.value}</p>
+              <div className='font-medium'>{item.label}</div>
+              <div className="text-lg cursor-pointer" onClick={item.action}>{item.value}</div>
               {index < 2 && <div className={index === 0 ? "mt-4" : "mt-6"} />}
             </React.Fragment>
           ))}

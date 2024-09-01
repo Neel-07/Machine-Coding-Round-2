@@ -1,43 +1,36 @@
 import React from 'react';
 
-const CatCard = ({ image, name, description, origin, temperaments, lifeSpan, learnMoreLink }) => {
+const CatCard = ({ image, name, description, origin, temperament, life_span, wikipedia_url }) => {
   return (
-    <article className="flex flex-col h-screen pb-7 bg-white rounded-2xl shadow-[2px_2px_8px_rgba(0,0,0,0.25)]">
+    <article className="flex flex-col bg-white rounded-2xl h-[650px] shadow-lg p-4">
       <img
         loading="lazy"
         src={image}
         alt={`${name} cat`}
-        className="object-contain w-full rounded-2xl aspect-[1.15]"
+        className="object-cover w-full rounded-2xl h-48 mb-4"
       />
-      <div className="flex flex-col items-start px-3.5 mt-3.5 w-full flex-grow">
-        <h2 className="text-3xl font-medium tracking-tighter text-center text-black">{name}</h2>
-        <p className="self-stretch mt-1.5 text-sm tracking-tight text-black flex-grow">{description}</p>
-        <div className="flex gap-5 mt-2 text-sm tracking-tight text-black whitespace-nowrap">
-          <div className="flex flex-col font-medium">
-            <div className="self-start">Origin</div>
-            <div className="mt-2">Temperament</div>
+      <div className="flex flex-col h-full">
+        <h2 className="text-2xl font-medium text-center text-black mb-2">{name}</h2>
+        <p className="text-sm text-black mb-2 flex-grow">{description}</p>
+        <div className="flex flex-col gap-4 mb-2">
+          <div className="flex gap-16">
+            <span className="font-medium">Origin</span>
+            <span>{origin}</span>
           </div>
-          <div className="self-start">{origin}</div>
+          <div className="flex flex-col">
+            <span className="font-medium">Temperament</span>
+            <span>{temperament}</span>
+          </div>
         </div>
-        <div className="flex gap-1 items-start mt-1">
-          {temperaments.map((temperament, index) => (
-            <span
-              key={index}
-              className="px-2 py-px text-xs tracking-tight whitespace-nowrap rounded-3xl bg-zinc-100 text-neutral-700"
-            >
-              {temperament}
-            </span>
-          ))}
-        </div>
-        <div className="flex flex-col mt-2">
-          <span className="font-medium text-black">Life Span</span>
-          <span className="text-sm tracking-tight text-black">{lifeSpan}</span>
+        <div className="flex gap-10 mb-4">
+          <span className="font-medium">Life Span</span>
+          <span>{life_span} years</span>
         </div>
         <a
-          href={learnMoreLink}
+          href={wikipedia_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 text-sm tracking-tight text-indigo-400"
+          className="text-indigo-400 hover:underline"
         >
           Learn More
         </a>
