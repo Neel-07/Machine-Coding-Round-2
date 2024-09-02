@@ -53,7 +53,7 @@ function ProfileOverview() {
           alt=""
           className="object-cover absolute inset-0 size-full"
         />
-        <article className="flex relative flex-col items-center py-8 mb-0 max-w-full bg-violet-300 rounded-xl border-8 border-white border-solid w-[420px] max-md:mb-2.5">
+        <article className="flex overflow-hidden relative flex-col items-center py-8 mb-0 max-w-full bg-violet-300 rounded-xl border-8 border-white border-solid w-[420px] max-md:mb-2.5">
           <ProfileHeader onRefresh={handleRefresh} />
           {userData && (
             <>
